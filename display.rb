@@ -16,11 +16,18 @@ class Display
     0.upto(7) do |row_num|
       0.upto(7) do |col_num|
         print_piece = board[[row_num, col_num]].to_s.colorize(background: background_color)
+        if pos_is_cursor_position([row_num, col_num])
+          print_piece = board[[row_num, col_num]].to_s.colorize(background: :red)
+        end
         print print_piece
       end
       print "\n"
     end
     return nil
+  end
+
+  def pos_is_cursor_position(pos)
+    pos[0]==@cursor.cursor_pos[0] && pos[1]==@cursor.cursor_pos[1]
   end
 
   def background_color
