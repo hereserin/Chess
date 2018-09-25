@@ -12,6 +12,15 @@ class Display
     @board.setup_pieces_for_new_game
   end
 
+  def render_test_loop
+    5.times do
+      system("clear")
+      render
+      @cursor.get_input
+    end
+    puts "Okay, thats it."
+  end
+
   def render
     0.upto(7) do |row_num|
       0.upto(7) do |col_num|
@@ -64,5 +73,5 @@ end
 if __FILE__ == $PROGRAM_NAME
   dis = Display.new(Board.new)
 
-  dis.render
+  dis.render_test_loop
 end

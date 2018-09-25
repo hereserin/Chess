@@ -1,6 +1,6 @@
 class Piece
   def to_s
-    return "P"
+    return " P "
   end
 
 end
