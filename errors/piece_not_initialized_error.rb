@@ -1,0 +1,1 @@
+class PieceNotInitilializedError < StandardError; end

@@ -1,1 +1,2 @@
 require_relative "no_piece_error"
+require_relative "piece_not_initialized_error"

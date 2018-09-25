@@ -1,2 +1,5 @@
 require_relative "piece.rb"
+require_relative "bishop.rb"
+require_relative "queen.rb"
+require_relative "rook.rb"
 require_relative "null_piece.rb"

@@ -16,6 +16,16 @@ class Board
     @grid[pos_arr[0]][pos_arr[1]] = value
   end
 
+  def self.position_on_board?(pos)
+    if pos[0] >= 0 && pos[0] < 8
+      if pos[1] >= 0 && pos[1] < 8
+        return true
+      end
+    end
+
+    return false
+  end
+
   def move_piece(start_pos, end_pos)
     if self[start_pos].is_a?(NullPiece)
       raise NoPieceError.new("No piece at that position")
@@ -30,11 +40,11 @@ class Board
 
   def setup_pieces_for_new_game
     0.upto(7) do |col|
-      self[[0, col]] = Piece.new
+      self[[0, col]] = Piece.new([0,col], :black, :P)
       1.upto(6) do |row|
-        self[[row, col]] = NullPiece.new
+        self[[row, col]] = NullPiece.instance
       end
-      self[[7, col]] = Piece.new
+      self[[7, col]] = Piece.new([7,col], :white, :P)
     end
     return nil
   end

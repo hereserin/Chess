@@ -1,5 +1,6 @@
 require "io/console"
 require "byebug"
+require_relative "board.rb"
 
 KEYMAP = {
   " " => :space,
@@ -87,8 +88,6 @@ class Cursor
   end
 
   def valid_cursor_pos(pos)
-    return false if pos[0] > 7 || pos[0] < 0
-    return false if pos[1] > 7 || pos[1] < 0
-    return true
+    Board.position_on_board?(pos)
   end
 end

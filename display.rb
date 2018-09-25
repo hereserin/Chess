@@ -56,6 +56,7 @@ class Display
       return :light_black
     end
 
+    # REFACTOR(?):
     # a = @color
     # b =
     #
