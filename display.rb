@@ -1,3 +1,4 @@
+require "byebug"
 require "colorize"
 require_relative "board.rb"
 require_relative "cursor.rb"
@@ -22,45 +23,20 @@ class Display
     return nil
   end
 
-
-
-#         str = piece.to_s
-#
-#         background = :light_white
-#
-#         if (idx1.even? && idx2.even?) || (idx1.odd? && idx2.odd?)
-#           background = :light_white
-#         else
-#           background = :light_black
-#         end
-#
-#         str = str.colorize(piece.color)
-#
-#         str = " #{str} ".colorize( :background => background)
-#
-#         if [idx1, idx2] == cursor.cursor_pos
-#           str = str.on_red #.blink
-#         end
-#
-#         print str
-#       end
-#
-#       print "\n"
-#   end
-#
-# nil
-#   end
-
   def background_color
     @color ||= :light_white
+    @i ||= 0
+    @i = 0 if @i == 8
 
     if @color == :light_white
-      @color = :light_black
+      @color = :light_black unless @i == 7
+      @i += 1
       return :light_white
     end
 
     if @color == :light_black
-      @color = :light_white
+      @color = :light_white unless @i == 7
+      @i += 1
       return :light_black
     end
 
