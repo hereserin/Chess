@@ -13,4 +13,8 @@ class NullPiece < Piece
   def to_s
     return " - "
   end
+
+  def symbol
+    return " - "
+  end
 end

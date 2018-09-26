@@ -28,7 +28,7 @@ attr_reader :HORIZONTAL_DIRS, :DIAGONAL_DIRS
         position[0] + slide_in_direction[0],
         position[1] + slide_in_direction[1],
       ]
-      until not_valid_move?(possible_move)
+      until not_valid_move?(possible_move) || @board[possible_move].color != nil 
         moves_arr << possible_move
         n += 1
         possible_move = [

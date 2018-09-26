@@ -1,5 +1,6 @@
 require_relative "pieces/all_pieces.rb"
 require_relative "errors/all_exceptions.rb"
+require "byebug"
 
 class Board
 
@@ -26,15 +27,15 @@ class Board
   end
 
   def move_piece(start_pos, end_pos)
-    if self[start_pos].is_a?(NullPiece)
-      raise NoPieceError.new("No piece at that position")
-    end
-
+    raise NoPieceError.new("No piece at that position") if self[start_pos].is_a?(NullPiece)
+    # debugger
+    raise InvalidTargetError.new("Not a valid move") unless self[start_pos].moves.include?(end_pos)
     # TODO self[start_pos].valid_moves.include?([end_pos])
 
     moving_piece = self[start_pos]
-    self[start_pos] = NullPiece.new
+    self[start_pos] = NullPiece.instance
     self[end_pos] = moving_piece
+    moving_piece.update_position(end_pos)
   end
 
   def setup_pieces_for_new_game
@@ -42,18 +43,18 @@ class Board
     place_back_row_pieces
     place_nulls
   end
-  
+
   private
   def place_pawns
     0.upto(7) do |col|
-      self[[1, col]] = Pawn.new([0,col], :white, self)
-      self[[6, col]] = Pawn.new([7,col], :black, self)
+      self[[1, col]] = Pawn.new([1,col], :blue, self)
+      self[[6, col]] = Pawn.new([6,col], :black, self)
     end
   end
 
   def place_back_row_pieces
     [ Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook ].each_with_index do |piece, idx|
-      self[[0, idx]] = piece.new([0, idx], :white, self)
+      self[[0, idx]] = piece.new([0, idx], :blue, self)
       self[[7, idx]] = piece.new([7, idx], :black, self)
     end
   end

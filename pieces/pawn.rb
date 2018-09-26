@@ -11,7 +11,7 @@ class Pawn < Piece
   end
 
   def symbol
-    ""
+    " ♟ "
   end
 
   def moves
@@ -20,12 +20,12 @@ class Pawn < Piece
 
   def at_start_row?
     return true if color == :black && position[0] == 6
-    return true if color == :white && position[0] == 1
+    return true if color == :blue && position[0] == 1
     return false
   end
 
   def forward_dir
-    return 1 if color == :white
+    return 1 if color == :blue
     return -1 if color == :black
   end
 
