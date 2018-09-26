@@ -21,24 +21,24 @@ attr_reader :HORIZONTAL_DIRS, :DIAGONAL_DIRS
 
   def moves
     moves_arr = []
-    move_dirs.each do |step_in_direction|
+    move_dirs.each do |slide_in_direction|
       n = 1
-  
+
       possible_move = [
-        position[0] + step_in_direction[0],
-        position[1] + step_in_direction[1],
+        position[0] + slide_in_direction[0],
+        position[1] + slide_in_direction[1],
       ]
       until not_valid_move?(possible_move)
         moves_arr << possible_move
         n += 1
         possible_move = [
-          position[0] + (n * step_in_direction[0]),
-          position[1] + (n * step_in_direction[1]),
+          position[0] + (n * slide_in_direction[0]),
+          position[1] + (n * slide_in_direction[1]),
         ]
       end
     end
-      p moves_arr
-      return moves_arr
+      # p moves_arr
+      moves_arr
   end
 
   def move_dirs

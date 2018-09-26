@@ -5,8 +5,12 @@ class Bishop < Piece
 
   include SlidingPiece
 
-  def initialize(pos, color)
-    super(pos, color, :B)
+  def initialize(pos, color, board)
+    super(pos, color, board)
+  end
+
+  def to_s
+    " b "
   end
 
   def symbol

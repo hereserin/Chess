@@ -5,8 +5,12 @@ class Queen < Piece
 
   include SlidingPiece
 
-  def initialize(pos, color)
-    super(pos, color, :Q)
+  def initialize(pos, color, board)
+    super(pos, color, board)
+  end
+
+  def to_s
+    " Q "
   end
 
   def symbol

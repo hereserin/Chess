@@ -5,7 +5,6 @@ class Board
 
   def initialize
     @grid = Array.new(8) { Array.new(8) }
-
   end
 
   def [](pos_arr)
@@ -39,16 +38,33 @@ class Board
   end
 
   def setup_pieces_for_new_game
+    place_pawns
+    place_back_row_pieces
+    place_nulls
+  end
+  
+  private
+  def place_pawns
     0.upto(7) do |col|
-      self[[0, col]] = Piece.new([0,col], :black, :P)
-      1.upto(6) do |row|
-        self[[row, col]] = NullPiece.instance
-      end
-      self[[7, col]] = Piece.new([7,col], :white, :P)
+      self[[1, col]] = Pawn.new([0,col], :white, self)
+      self[[6, col]] = Pawn.new([7,col], :black, self)
     end
-    return nil
   end
 
+  def place_back_row_pieces
+    [ Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook ].each_with_index do |piece, idx|
+      self[[0, idx]] = piece.new([0, idx], :white, self)
+      self[[7, idx]] = piece.new([7, idx], :black, self)
+    end
+  end
+
+  def place_nulls
+    0.upto(7) do |col|
+      2.upto(5) do |row|
+        self[[row, col]] = NullPiece.instance
+      end
+    end
+  end
 
 
 end

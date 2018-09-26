@@ -5,8 +5,12 @@ class Rook < Piece
 
   include SlidingPiece
 
-  def initialize(pos, color)
-    super(pos, color, :R)
+  def initialize(pos, color, board)
+    super(pos, color, board)
+  end
+
+  def to_s
+    " r "
   end
 
   def symbol
