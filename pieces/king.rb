@@ -17,6 +17,8 @@ class King < Piece
     " ♚ "
   end
 
+
+
   def move_dirs
     return [
       [0, -1],

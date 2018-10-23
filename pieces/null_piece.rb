@@ -8,6 +8,10 @@ class NullPiece < Piece
     @symbol = nil
   end
 
+  def is_null_piece?
+    return true
+  end
+
   include Singleton
 
   def to_s
